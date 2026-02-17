@@ -1,0 +1,37 @@
+[project]
+name = "typo-verifier"
+version = "0.1.0"
+description = "OCR + Language Verification assistant for audit-style reports (PDF/Markdown)."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "pillow>=10.0.0",
+  "pdfplumber>=0.11.0",
+  "pytesseract>=0.3.10",
+  "language-tool-python>=2.7.1",
+  "reportlab>=4.0.0",
+  "typer>=0.12.0",
+  "fastapi>=0.110.0",
+  "uvicorn>=0.30.0",
+  "python-multipart>=0.0.9",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0.0",
+  "ruff>=0.5.0",
+]
+
+[project.scripts]
+typo-verifier = "typo_verifier.cli:app"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM"]
+ignore = ["E203", "E266"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
